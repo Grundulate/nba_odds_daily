@@ -1,0 +1,36 @@
+name: Daily NBA Odds Fetch
+
+on:
+  schedule:
+    # 4 PM Central = 22:00 UTC
+    - cron: "0 22 * * *"
+  workflow_dispatch:  # allows manual runs
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Run script
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python fetch_odds.py
+
+      - name: Commit CSV file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add *.csv
+          git commit -m "Daily update" || echo "No changes"
+          git push
