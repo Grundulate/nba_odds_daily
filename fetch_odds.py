@@ -27,7 +27,12 @@ def main():
     os.makedirs("data", exist_ok=True)
 
     today = datetime.now().strftime("%Y-%m-%d")
-    filename = f"data/nba_spreads_{today}.csv"
+
+    # Determine if the run is manual
+    event_name = os.getenv("GITHUB_EVENT_NAME", "")
+    suffix = "_M" if event_name == "workflow_dispatch" else ""
+
+    filename = f"data/nba_spreads_{today}{suffix}.csv"
 
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
