@@ -27,12 +27,14 @@ def main():
 
     today_date = datetime.now().strftime("%Y-%m-%d")
 
+    # Filename suffix if the workflow is run manually
     event_name = os.getenv("GITHUB_EVENT_NAME", "")
     suffix = "_M" if event_name == "workflow_dispatch" else ""
+
     filename = f"data/nba_spreads_{today_date}{suffix}.csv"
 
     # ------------------------------------------
-    # 1. First pass — discover all bookmakers
+    # 1. Discover all bookmakers that appear today
     # ------------------------------------------
     all_bookmakers = set()
 
@@ -40,11 +42,10 @@ def main():
         for bookmaker in game.get("bookmakers", []):
             all_bookmakers.add(bookmaker["title"])
 
-    # Sort for consistent column order
     all_bookmakers = sorted(list(all_bookmakers))
 
     # ------------------------------------------
-    # 2. Build CSV header dynamically
+    # 2. Build CSV header
     # ------------------------------------------
     header = [
         "date",
@@ -53,41 +54,48 @@ def main():
         "away_team",
     ]
 
-    # Add columns: bookmaker_point, bookmaker_price
     for book in all_bookmakers:
-        safe_book = book.replace(" ", "_").replace("-", "_")
-        header.append(f"{safe_book}_point")
-        header.append(f"{safe_book}_price")
+        safe = book.replace(" ", "_").replace("-", "_")
+        header += [
+            f"{safe}_home_point",
+            f"{safe}_home_price",
+            f"{safe}_away_point",
+            f"{safe}_away_price",
+        ]
 
     # ------------------------------------------
-    # 3. Write data row per game
+    # 3. Write data rows (one per game)
     # ------------------------------------------
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(header)
 
         for game in data:
+            home_team = game["home_team"]
+            away_team = game["away_team"]
+            game_id = game["id"]
+
+            # Start row with basic info
             row = {
                 "date": today_date,
-                "game_id": game["id"],
-                "home_team": game["home_team"],
-                "away_team": game["away_team"],
+                "game_id": game_id,
+                "home_team": home_team,
+                "away_team": away_team,
             }
 
-            home = game["home_team"]
-
-            # Initialize all bookmaker columns as blank
+            # Initialize all bookmaker fields blank
             for book in all_bookmakers:
-                safe_book = book.replace(" ", "_").replace("-", "_")
-                row[f"{safe_book}_point"] = ""
-                row[f"{safe_book}_price"] = ""
+                safe = book.replace(" ", "_").replace("-", "_")
+                row[f"{safe}_home_point"] = ""
+                row[f"{safe}_home_price"] = ""
+                row[f"{safe}_away_point"] = ""
+                row[f"{safe}_away_price"] = ""
 
-            # Fill in data for each bookmaker
+            # Fill row with bookmaker data
             for bookmaker in game.get("bookmakers", []):
                 book_name = bookmaker["title"]
-                safe_book = book_name.replace(" ", "_").replace("-", "_")
+                safe = book_name.replace(" ", "_").replace("-", "_")
 
-                # extract spreads market
                 spreads_market = next(
                     (m for m in bookmaker.get("markets", []) if m.get("key") == "spreads"),
                     None
@@ -95,18 +103,21 @@ def main():
                 if not spreads_market:
                     continue
 
-                # extract home spread only
-                home_outcome = next(
-                    (o for o in spreads_market.get("outcomes", []) if o.get("name") == home),
-                    None
-                )
-                if not home_outcome:
-                    continue
+                # outcomes include home + away spreads
+                outcomes = spreads_market.get("outcomes", [])
 
-                row[f"{safe_book}_point"] = home_outcome.get("point")
-                row[f"{safe_book}_price"] = home_outcome.get("price")
+                home_outcome = next((o for o in outcomes if o.get("name") == home_team), None)
+                away_outcome = next((o for o in outcomes if o.get("name") == away_team), None)
 
-            # Write row in the correct header column order
+                if home_outcome:
+                    row[f"{safe}_home_point"] = home_outcome.get("point")
+                    row[f"{safe}_home_price"] = home_outcome.get("price")
+
+                if away_outcome:
+                    row[f"{safe}_away_point"] = away_outcome.get("point")
+                    row[f"{safe}_away_price"] = away_outcome.get("price")
+
+            # Write row in header order
             writer.writerow([row[col] for col in header])
 
     print(f"Saved {filename}")
