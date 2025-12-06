@@ -47,35 +47,38 @@ while current <= END_DATE:
 
     resp = requests.get(url, params=params)
 
-print("Raw response:", resp.text[:300])   # show first 300 characters
+    # Debug: Show raw API response (first 300 chars)
+    print(f"Raw response for {current.date()}: {resp.text[:300]}")
 
-if resp.status_code != 200:
-    print(f"[{current.date()}] Error {resp.status_code}: {resp.text}")
-    current += timedelta(days=1)
-    time.sleep(THROTTLE_SECONDS)
-    continue
+    if resp.status_code != 200:
+        print(f"[{current.date()}] Error {resp.status_code}: {resp.text}")
+        current += timedelta(days=1)
+        time.sleep(THROTTLE_SECONDS)
+        continue
 
-# Try to decode JSON safely
-try:
-    data = resp.json()
-except Exception as e:
-    print(f"[{current.date()}] JSON decode error: {e}")
-    current += timedelta(days=1)
-    time.sleep(THROTTLE_SECONDS)
-    continue
+    # Safely attempt JSON decoding
+    try:
+        data = resp.json()
+    except Exception as e:
+        print(f"[{current.date()}] JSON decode error: {e}")
+        current += timedelta(days=1)
+        time.sleep(THROTTLE_SECONDS)
+        continue
 
-if not isinstance(data, list):
-    print(f"[{current.date()}] Unexpected API shape (not a list). Returned:")
-    print(data)
-    current += timedelta(days=1)
-    time.sleep(THROTTLE_SECONDS)
-    continue
+    # Ensure the response is a list (as expected)
+    if not isinstance(data, list):
+        print(f"[{current.date()}] Unexpected API response (not a list). Full response:")
+        print(data)
+        current += timedelta(days=1)
+        time.sleep(THROTTLE_SECONDS)
+        continue
 
-if not data:
-    print(f"[{current.date()}] No odds available.")
-    current += timedelta(days=1)
-    time.sleep(THROTTLE_SECONDS)
-    continue
+    if not data:
+        print(f"[{current.date()}] No odds available.")
+        current += timedelta(days=1)
+        time.sleep(THROTTLE_SECONDS)
+        continue
+
 
 
     # Collect all bookmakers
