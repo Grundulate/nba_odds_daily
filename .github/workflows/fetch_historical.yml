@@ -25,7 +25,7 @@ jobs:
 
       - name: Run script
         env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.HISTORIC_API_KEY }}
         run: python fetch_historical_odds.py
 
       - name: Commit results
