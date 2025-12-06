@@ -19,8 +19,8 @@ ODDS_FORMAT = "american"
 ODDS_URL = "https://api.the-odds-api.com/v4/historical/sports/{sport}/odds"
 
 # ---- CONFIG ----
-START_DATE = datetime(2020, 7, 1)   # earliest supported date for NBA historical
-END_DATE = datetime(2020, 11, 1)
+START_DATE = datetime(2020, 11, 1)   # earliest supported date for NBA historical
+END_DATE = datetime(2020, 11, 3)
 THROTTLE_SECONDS = 1                # avoid rate limit
 # -----------------
 
@@ -47,39 +47,18 @@ while current <= END_DATE:
 
     resp = requests.get(url, params=params)
 
-    # Debug: Show raw API response (first 300 chars)
-    print(f"Raw response for {current.date()}: {resp.text[:300]}")
-
     if resp.status_code != 200:
         print(f"[{current.date()}] Error {resp.status_code}: {resp.text}")
         current += timedelta(days=1)
         time.sleep(THROTTLE_SECONDS)
         continue
 
-    # Safely attempt JSON decoding
-    try:
-        data = resp.json()
-    except Exception as e:
-        print(f"[{current.date()}] JSON decode error: {e}")
-        current += timedelta(days=1)
-        time.sleep(THROTTLE_SECONDS)
-        continue
-
-    # Ensure the response is a list (as expected)
-    if not isinstance(data, list):
-        print(f"[{current.date()}] Unexpected API response (not a list). Full response:")
-        print(data)
-        current += timedelta(days=1)
-        time.sleep(THROTTLE_SECONDS)
-        continue
-
+    data = resp.json()
     if not data:
         print(f"[{current.date()}] No odds available.")
         current += timedelta(days=1)
         time.sleep(THROTTLE_SECONDS)
         continue
-
-
 
     # Collect all bookmakers
     all_books = set()
