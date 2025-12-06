@@ -47,18 +47,36 @@ while current <= END_DATE:
 
     resp = requests.get(url, params=params)
 
-    if resp.status_code != 200:
-        print(f"[{current.date()}] Error {resp.status_code}: {resp.text}")
-        current += timedelta(days=1)
-        time.sleep(THROTTLE_SECONDS)
-        continue
+print("Raw response:", resp.text[:300])   # show first 300 characters
 
+if resp.status_code != 200:
+    print(f"[{current.date()}] Error {resp.status_code}: {resp.text}")
+    current += timedelta(days=1)
+    time.sleep(THROTTLE_SECONDS)
+    continue
+
+# Try to decode JSON safely
+try:
     data = resp.json()
-    if not data:
-        print(f"[{current.date()}] No odds available.")
-        current += timedelta(days=1)
-        time.sleep(THROTTLE_SECONDS)
-        continue
+except Exception as e:
+    print(f"[{current.date()}] JSON decode error: {e}")
+    current += timedelta(days=1)
+    time.sleep(THROTTLE_SECONDS)
+    continue
+
+if not isinstance(data, list):
+    print(f"[{current.date()}] Unexpected API shape (not a list). Returned:")
+    print(data)
+    current += timedelta(days=1)
+    time.sleep(THROTTLE_SECONDS)
+    continue
+
+if not data:
+    print(f"[{current.date()}] No odds available.")
+    current += timedelta(days=1)
+    time.sleep(THROTTLE_SECONDS)
+    continue
+
 
     # Collect all bookmakers
     all_books = set()
