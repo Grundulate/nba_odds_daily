@@ -5,7 +5,7 @@ import time
 import os
 import sys
 
-API_KEY = os.getenv("HISTORIC_API_KEY")
+API_KEY = os.getenv("ODDS_API_KEY")
 if not API_KEY:
     print("ERROR: ODDS_API_KEY environment variable is not set.")
     sys.exit(1)
