@@ -13,13 +13,14 @@ if not API_KEY:
 SPORT = "basketball_nba"
 REGIONS = "us"
 MARKETS = "spreads"
+ODDS_FORMAT = "american"
 
 # Historical endpoint
 ODDS_URL = "https://api.the-odds-api.com/v4/historical/sports/{sport}/odds"
 
 # ---- CONFIG ----
 START_DATE = datetime(2020, 7, 1)   # earliest supported date for NBA historical
-END_DATE = datetime.now()
+END_DATE = datetime(2020, 11, 1)
 THROTTLE_SECONDS = 1                # avoid rate limit
 # -----------------
 
