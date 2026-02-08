@@ -1,0 +1,13 @@
+date,game_id,home_team,away_team,BetMGM_home_point,BetMGM_home_price,BetMGM_away_point,BetMGM_away_price,BetRivers_home_point,BetRivers_home_price,BetRivers_away_point,BetRivers_away_price,DraftKings_home_point,DraftKings_home_price,DraftKings_away_point,DraftKings_away_price,FanDuel_home_point,FanDuel_home_price,FanDuel_away_point,FanDuel_away_price,MyBookie.ag_home_point,MyBookie.ag_home_price,MyBookie.ag_away_point,MyBookie.ag_away_price
+2026-02-08,9a4bb2e3bc9fd308b6e40f29e43ab2f1,Toronto Raptors,Indiana Pacers,-16.5,-110,16.5,-115,-17.0,-113,17.0,-121,-17.5,-115,17.5,-115,-16.5,-108,16.5,-122,-14.5,-133,14.5,100
+2026-02-08,8864122f2c28fd6b7621c0ee000c41fc,Minnesota Timberwolves,Los Angeles Clippers,14.5,-105,-14.5,-125,15.0,-121,-15.0,-113,15.5,-115,-15.5,-115,14.5,-114,-14.5,-114,14.5,-118,-14.5,-118
+2026-02-08,28ed7bb63c7bfb49becafe83b0b89e75,Charlotte Hornets,Detroit Pistons,,,,,2.5,-113,-2.5,-112,3.5,-115,-3.5,-105,2.0,-108,-2.0,-112,,,,
+2026-02-08,1c83af4e3fb93fe6584ef5a9e1351f2b,Brooklyn Nets,Chicago Bulls,,,,,1.5,-112,-1.5,-114,2.5,-110,-2.5,-110,1.5,-110,-1.5,-110,,,,
+2026-02-08,87c446233100a0e10c8a9ae223b3d859,Miami Heat,Utah Jazz,,,,,-8.0,-113,8.0,-113,-9.5,-105,9.5,-115,-8.0,-110,8.0,-110,,,,
+2026-02-08,d7da0d0be9b38cafad30bd7ed2a6c674,Orlando Magic,Milwaukee Bucks,,,,,-9.5,-114,9.5,-112,-9.5,-110,9.5,-110,-9.5,-110,9.5,-110,,,,
+2026-02-08,b664e9dae2af4118d7572e95a333b93e,Minnesota Timberwolves,Atlanta Hawks,,,,,-6.0,-115,6.0,-110,,,,,-6.0,-112,6.0,-108,,,,
+2026-02-08,f3e4369053da36c11257f3b1498bd0e6,New Orleans Pelicans,Sacramento Kings,,,,,-5.5,-114,5.5,-112,,,,,-5.5,-112,5.5,-108,,,,
+2026-02-08,55ce3994bdb669f780eb1021014461cf,Denver Nuggets,Cleveland Cavaliers,,,,,-1.0,-114,1.0,-112,,,,,-1.0,-108,1.0,-112,,,,
+2026-02-08,52fefc6f39b3b91682e5f266233d1088,Golden State Warriors,Memphis Grizzlies,,,,,-7.5,-114,7.5,-112,,,,,-7.5,-110,7.5,-110,,,,
+2026-02-08,fe43ece4642dde1bcd2610c18f0cfc27,Los Angeles Lakers,Oklahoma City Thunder,,,,,4.0,-113,-4.0,-113,5.5,-115,-5.5,-105,4.0,-110,-4.0,-110,,,,
+2026-02-08,7c8edd09283c5268205c6029a589798f,Portland Trail Blazers,Philadelphia 76ers,,,,,2.0,-110,-2.0,-114,,,,,2.0,-110,-2.0,-110,,,,
