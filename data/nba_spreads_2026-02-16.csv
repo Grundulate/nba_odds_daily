@@ -1,0 +1,11 @@
+date,game_id,home_team,away_team,BetMGM_home_point,BetMGM_home_price,BetMGM_away_point,BetMGM_away_price,BetRivers_home_point,BetRivers_home_price,BetRivers_away_point,BetRivers_away_price,DraftKings_home_point,DraftKings_home_price,DraftKings_away_point,DraftKings_away_price,FanDuel_home_point,FanDuel_home_price,FanDuel_away_point,FanDuel_away_price
+2026-02-16,c93f72cb146ef69c7bd4a79f03481123,Washington Wizards,Indiana Pacers,3.5,-105,-3.5,-115,2.5,-108,-2.5,-115,3.5,-105,-3.5,-115,3.5,-110,-3.5,-110
+2026-02-16,d647541d42648749f3bde601547fa1be,Philadelphia 76ers,Atlanta Hawks,-3.5,-110,3.5,-110,-4.5,-109,4.5,-114,-3.5,-110,3.5,-110,-4.0,-108,4.0,-112
+2026-02-16,24a92d49df82923f29b3e9cda4d57446,Cleveland Cavaliers,Brooklyn Nets,-13.5,-110,13.5,-110,-13.5,-114,13.5,-109,-13.5,-110,13.5,-110,-13.5,-112,13.5,-108
+2026-02-16,97031eee2ea39d890bf5046a1c57c7a7,Charlotte Hornets,Houston Rockets,2.5,-115,-2.5,-105,2.5,-113,-2.5,-110,2.5,-115,-2.5,-105,2.0,-108,-2.0,-112
+2026-02-16,0ea61c4bb159036d242d6aa077216586,New York Knicks,Detroit Pistons,-3.5,-102,3.5,-118,-3.5,-110,3.5,-113,-3.5,102,3.5,-122,-3.0,-106,3.0,-114
+2026-02-16,537f72a12ccf54596ce42c638bacb485,Chicago Bulls,Toronto Raptors,6.5,-110,-6.5,-110,5.5,-109,-5.5,-114,6.5,-112,-6.5,-108,6.0,-112,-6.0,-108
+2026-02-16,d34f8e76f10dd65a684c9bd6301e667e,San Antonio Spurs,Phoenix Suns,-6.5,-110,6.5,-110,-6.5,-115,6.5,-108,-6.5,-110,6.5,-110,-6.5,-114,6.5,-106
+2026-02-16,7bb1dc8e7e0b6a77195533729951d187,Golden State Warriors,Boston Celtics,3.5,-110,-3.5,-110,3.5,-114,-3.5,-109,3.5,-110,-3.5,-110,3.5,-114,-3.5,-106
+2026-02-16,fc4ef6fdb917bca80f99940665442e96,Sacramento Kings,Orlando Magic,10.5,-105,-10.5,-115,11.5,-115,-11.5,-108,11.5,-125,-11.5,105,11.5,-112,-11.5,-108
+2026-02-16,13c088a4f279e674bf80e4cb06d231a9,Los Angeles Clippers,Denver Nuggets,3.5,-105,-3.5,-115,3.5,-110,-3.5,-113,3.5,-105,-3.5,-115,3.5,-110,-3.5,-110
