@@ -2,8 +2,7 @@ name: Daily MLB Odds Fetch
 
 on:
   schedule:
-    # 4 PM Central = 22:00 UTC
-    - cron: "40 15 * * *"
+    - cron: "40 14 * * *"
   workflow_dispatch:  # allows manual runs
 
 jobs:
