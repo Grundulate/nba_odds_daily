@@ -1,9 +1,8 @@
 name: Daily NBA Odds Fetch
 
 on:
-  schedule:
-    # 4 PM Central = 22:00 UTC
-    - cron: "35 20 * * *"
+  #schedule:
+  #  - cron: "35 20 * * *"
   workflow_dispatch:  # allows manual runs
 
 jobs:
