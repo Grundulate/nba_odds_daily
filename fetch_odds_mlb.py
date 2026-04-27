@@ -27,11 +27,7 @@ def main():
 
     today_date = datetime.now().strftime("%Y-%m-%d")
 
-    # Filename suffix if the workflow is run manually
-    event_name = os.getenv("GITHUB_EVENT_NAME", "")
-    suffix = "_M" if event_name == "workflow_dispatch" else ""
-
-    filename = f"mlb_data/nba_spreads_{today_date}{suffix}.csv"
+    filename = f"mlb_data/mlb_spreads_{today_date}.csv"
 
     # ------------------------------------------
     # 1. Discover all bookmakers that appear today
