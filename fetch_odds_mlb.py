@@ -46,6 +46,7 @@ def main():
     header = [
         "date",
         "game_id",
+        "commence_time",
         "home_team",
         "away_team",
     ]
@@ -70,10 +71,12 @@ def main():
             home_team = game["home_team"]
             away_team = game["away_team"]
             game_id = game["id"]
+            commence_time = game["commence_time"]
 
             # Start row with basic info
             row = {
                 "date": today_date,
+                "commence_time": commence_time,
                 "game_id": game_id,
                 "home_team": home_team,
                 "away_team": away_team,
