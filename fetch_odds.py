@@ -29,7 +29,7 @@ def main():
 
     # Filename suffix if the workflow is run manually
     event_name = os.getenv("GITHUB_EVENT_NAME", "")
-    suffix = "_M" if event_name == "workflow_dispatch" else ""
+    suffix = "" if event_name == "workflow_dispatch" else ""
 
     filename = f"data/nba_spreads_{today_date}{suffix}.csv"
 
